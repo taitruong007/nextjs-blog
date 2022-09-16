@@ -30,7 +30,7 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="https://upload.wikimedia.org/wikipedia/vi/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png"
               className={utilStyles.borderCircle}
               height={144}
               width={144}
@@ -44,7 +44,7 @@ export default function Layout({ children, home }) {
               <a>
                 <Image
                   priority
-                  src="/images/profile.jpg"
+                  src="https://upload.wikimedia.org/wikipedia/vi/thumb/0/0c/Liverpool_FC.svg/1200px-Liverpool_FC.svg.png"
                   className={utilStyles.borderCircle}
                   height={108}
                   width={108}
