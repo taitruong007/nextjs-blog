@@ -28,4 +28,4 @@ jobs:
       - name: set report
         run: echo "DEP_MERMAID=$(echo npx depcruise --output-type mermaid --config .dependency-cruiser.js src)" >> $GITHUB_ENV
       - name: generate report
-        run: echo ${{ $DEP_MERMAID }}
+        run: echo ${{ env.DEP_MERMAID }}
