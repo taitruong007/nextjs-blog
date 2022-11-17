@@ -25,7 +25,15 @@ jobs:
           git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
         run: yarn --check-files --frozen-lockfile --non-interactive
-      - name: set report
-        run: echo "DEP_MERMAID=$(echo $(npx depcruise --output-type mermaid --config .dependency-cruiser.js src))" >> $GITHUB_ENV
-      - name: generate report
-        run: echo ${{ env.DEP_MERMAID }}
+      - name: set report data
+        run: |
+          echo "DEP_MERMAID=$(echo $(npx depcruise --output-type mermaid --config .dependency-cruiser.js src))" >> $GITHUB_ENV
+          echo ${{ env.DEP_MERMAID }}
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              body: ${{ env.DEP_MERMAID }}
+            })
