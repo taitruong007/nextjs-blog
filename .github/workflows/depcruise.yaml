@@ -26,5 +26,5 @@ jobs:
       - name: install packages
         run: yarn --check-files --frozen-lockfile --non-interactive
       - name: generate report
-        run: |
-          npx depcruise --output-type mermaid --config .dependency-cruiser.js src
+        run: echo "DEP_MERMAID=$(echo npx depcruise --output-type mermaid --config .dependency-cruiser.js src)" >> $GITHUB_ENV
+        run: echo ${{ $DEP_MERMAID }}
