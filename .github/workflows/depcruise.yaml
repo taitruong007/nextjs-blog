@@ -14,4 +14,6 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ github.head_ref }}
-      - uses: MH4GF/dependency-cruiser-report-action@v2
+      - uses: josteph/depcruise-pull-request@v1.0.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
