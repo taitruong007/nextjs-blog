@@ -28,7 +28,7 @@ jobs:
       - name: set report data
         run: |
           echo "DEP_MERMAID=$(echo $(npx depcruise --output-type mermaid --config .dependency-cruiser.js src))" >> $GITHUB_ENV
-          echo ${{ env.DEP_MERMAID }}
+          echo ${{ env.DEP_MERMAID.toString() }}
       - uses: actions/github-script@v6
         with:
           script: |
@@ -37,6 +37,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `\`\`\`mermaid
-                ${{ env.DEP_MERMAID }}
+                ${env.DEP_MERMAID}.toString()
               \`\`\``
             })
