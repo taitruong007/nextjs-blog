@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -12,6 +12,13 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.1"
+    "remark-html": "^15.0.1",
+    "tai-truong-ts": "git+https://github.com/taitruong007/tai-truong-ts#8fa40316f254342d301af12376753eb517a50e65"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "dependency-cruiser": "^11.18.0",
+    "typescript": "^4.8.3"
   }
 }
