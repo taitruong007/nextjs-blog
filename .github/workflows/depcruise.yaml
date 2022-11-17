@@ -12,13 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.PRIVATE_PAT }}
           persist-credentials: false
           ref: ${{ github.head_ref }}
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: config git url
+        env:
+          READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
+        run: |
+          git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
         run: yarn --check-files --frozen-lockfile --non-interactive
       - name: generate report
