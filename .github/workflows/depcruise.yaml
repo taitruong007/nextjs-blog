@@ -37,6 +37,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `\`\`\`mermaid
-                ${env.DEP_MERMAID}.toString()
+                ${env.DEP_MERMAID.toString()}
               \`\`\``
             })
