@@ -8,7 +8,7 @@ import Date from '../components/date';
 import Layout, { siteTitle } from '../components/layout';
 
 import utilStyles from '../styles/utils.module.css';
-// import { Num } from 'tai-truong-ts';
+import { Num } from 'tai-truong-ts';
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
@@ -28,7 +28,7 @@ export default function Home({
     id: string;
   }[];
 }) {
-  // console.log('Num', Num);
+  console.log('Num', Num);
   return (
     <Layout home>
       <Head>
