@@ -14,6 +14,12 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ github.head_ref }}
-      - uses: josteph/depcruise-pull-request@v1.0.0
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 18
+      - name: install packages
+        run: yarn --check-files --frozen-lockfile --non-interactive
+      - name: generate report
+        run: |
+          npx depcruise --output-type mermaid --config .dependency-cruiser.js src
