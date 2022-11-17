@@ -16,5 +16,5 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: MH4GF/dependency-cruiser-report-action@v2
         with:
-          github-token: ${{ secrets.PRIVATE_PAT }}
+          github-token: ${{ secrets.PRIVATE_PATQWE }}
           cruise-script: yarn run -s depcruise
