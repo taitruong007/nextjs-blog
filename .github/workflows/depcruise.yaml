@@ -17,11 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: config git url
-        env:
-          READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
-        run: |
-          git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
         run: yarn install
       - uses: MH4GF/dependency-cruiser-report-action@v2
