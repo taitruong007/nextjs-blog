@@ -60,7 +60,9 @@ jobs:
       # - name: install packages
       #   run: yarn --check-files --frozen-lockfile --non-interactive
       - run: |
-        cd .github/actions/action-dependency-cruiser && npm run build
+          npm i
+          npm run build
+        working-directory: .github/actions/action-dependency-cruiser
       - uses: ./.github/actions/action-dependency-cruiser
         with:
           github-token: ${{ secrets.PRIVATE_PAT }}
