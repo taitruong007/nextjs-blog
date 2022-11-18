@@ -19,11 +19,11 @@ inputs:
     default: '.'
 runs:
   using: composite
-  permissions:
-    contents: read
-    pull-requests: write
   steps:
     - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        ref: ${{ github.head_ref }}
     - name: config git url
       shell: bash
       env:
