@@ -22,6 +22,7 @@ runs:
   steps:
     - uses: actions/checkout@v3
     - name: config git url
+      shell: bash
       env:
         READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
