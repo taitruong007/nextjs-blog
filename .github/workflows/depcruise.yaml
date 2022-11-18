@@ -23,5 +23,5 @@ jobs:
         run: |
           git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
-        run: yarn install
+        run: yarn --check-files --frozen-lockfile --non-interactive
       - uses: MH4GF/dependency-cruiser-report-action@v2
