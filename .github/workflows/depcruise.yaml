@@ -23,20 +23,7 @@ jobs:
           READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
         run: |
           git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
-      - name: install packages
-        run: yarn --check-files --frozen-lockfile --non-interactive
-      - name: set report data
-        run: |
-          echo "DEP_MERMAID=$(echo $(npx depcruise --output-type mermaid --config .dependency-cruiser.js src))" >> $GITHUB_ENV
-          echo ${{ env.DEP_MERMAID.toString() }}
-      - uses: actions/github-script@v6
+      - uses: MH4GF/dependency-cruiser-report-action@v2
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `\`\`\`mermaid
-                ${env.DEP_MERMAID.toString()}
-              \`\`\``
-            })
+          github-token: ${{ secrets.PRIVATE_PAT }}
+          cruise-script: yarn run -s depcruise
