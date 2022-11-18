@@ -21,9 +21,11 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-        ref: ${{ github.head_ref }}
+    - name: config git url
+      env:
+        READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
+      run: |
+        git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
     - id: changed-files
       uses: tj-actions/changed-files@v34.0.2
       with:
