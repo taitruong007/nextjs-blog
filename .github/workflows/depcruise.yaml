@@ -3,6 +3,36 @@ on:
   pull_request:
 
 jobs:
+  # setup:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 3
+  #   name: setup
+  #   steps:
+  #     - name: チェックアウト
+  #       uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #         ref: ${{ github.head_ref }}
+  #     - name: Use Node.js 18
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #     - name: cache node_modules
+  #       uses: actions/cache@v3
+  #       id: node_modules_cache_id
+  #       env:
+  #         cache-name: cache-node-modules
+  #       with:
+  #         path: node_modules
+  #         key: ${{ github.run_id }}-${{ hashFiles('./package-lock.json') }}
+  #     - name: config git url
+  #       env:
+  #         READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
+  #       run: |
+  #         git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
+  #     - name: install packages
+  #       run: yarn --check-files --frozen-lockfile --non-interactive
+
   report:
     permissions:
       pull-requests: write
@@ -24,7 +54,7 @@ jobs:
         run: |
           git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
-        run: yarn install
+        run: yarn --check-files --frozen-lockfile --non-interactive
       - uses: MH4GF/dependency-cruiser-report-action@v2
         with:
           github-token: ${{ secrets.PRIVATE_PAT }}
