@@ -59,6 +59,8 @@ jobs:
       #     git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       # - name: install packages
       #   run: yarn --check-files --frozen-lockfile --non-interactive
+      - run: |
+        cd .github/actions/action-dependency-cruiser && npm run build
       - uses: ./.github/actions/action-dependency-cruiser
         with:
           github-token: ${{ secrets.PRIVATE_PAT }}
