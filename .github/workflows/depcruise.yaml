@@ -3,22 +3,22 @@ on:
   pull_request:
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          ref: ${{ github.head_ref }}
-      - name: Hello world action step
-        id: hello
-        uses: ./.github/actions/action-dependency-cruiser
-        with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+  # hello_world_job:
+  #   runs-on: ubuntu-latest
+  #   name: A job to say hello
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #         ref: ${{ github.head_ref }}
+  #     - name: Hello world action step
+  #       id: hello
+  #       uses: ./.github/actions/action-dependency-cruiser
+  #       with:
+  #         who-to-greet: 'Mona the Octocat'
+  #     # Use the output from the `hello` step
+  #     - name: Get the output time
+  #       run: echo "The time was ${{ steps.hello.outputs.time }}"
 
   report:
     permissions:
@@ -34,11 +34,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: config git url
-        env:
-          READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
-        run: |
-          git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
-      - name: install packages
-        run: yarn --check-files --frozen-lockfile --non-interactive
-      - uses: MH4GF/dependency-cruiser-report-action@v2
+      # - name: config git url
+      #   env:
+      #     READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
+      #   run: |
+      #     git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
+      # - name: install packages
+      #   run: yarn --check-files --frozen-lockfile --non-interactive
+      - uses: ./.github/actions/action-dependency-cruiser
