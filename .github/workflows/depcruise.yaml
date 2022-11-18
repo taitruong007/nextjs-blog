@@ -56,6 +56,3 @@ jobs:
       - name: install packages
         run: yarn --check-files --frozen-lockfile --non-interactive
       - uses: MH4GF/dependency-cruiser-report-action@v2
-        with:
-          github-token: ${{ secrets.PRIVATE_PAT }}
-          cruise-script: yarn run -s depcruise
