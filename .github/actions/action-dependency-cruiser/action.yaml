@@ -20,9 +20,9 @@ inputs:
 runs:
   using: composite
   steps:
-    # - uses: actions/checkout@v3
-    #   with:
-    #     token: ${{ inputs.github-token }}
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ inputs.github-token }}
     # - name: config git url
     #   shell: bash
     #   env:
