@@ -21,6 +21,8 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ inputs.github-token }}
     - id: changed-files
       uses: tj-actions/changed-files@v34.0.2
       with:
