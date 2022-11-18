@@ -19,7 +19,7 @@ jobs:
           node-version: 18
       - name: config git url
         env:
-          READONLY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          READONLY_GITHUB_TOKEN: ${{ secrets.PRIVATE_PAT }}
         run: |
           git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
       - name: install packages
