@@ -29,6 +29,11 @@ runs:
     #     READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
     #   run: |
     #     git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
+    - name: restore cache from node_modules
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: ${{ github.run_id }}-${{ hashFiles('./package-lock.json') }}
     - id: changed-files
       uses: tj-actions/changed-files@v34.0.2
       with:
