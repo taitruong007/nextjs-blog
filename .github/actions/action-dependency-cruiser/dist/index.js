@@ -19205,7 +19205,6 @@ var github = __nccwpck_require__(3376);
 ;// CONCATENATED MODULE: ./src/ActionError.ts
 
 class ActionError extends Error {
-    severity;
     constructor(message, severity) {
         super(message);
         this.severity = severity;
@@ -19309,9 +19308,9 @@ const getConfigFilePath = () => {
     const depcruiseConfigFile = core.getInput('config_file', { required: false });
     return depcruiseConfigFile !== '' ? depcruiseConfigFile : mayBeConfigFilePath();
 };
-const getSha = () => 
+const getSha = () => { var _a, _b, _c; 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-github.context.payload.after ?? github.context.payload.pull_request.head.sha;
+return (_a = github.context.payload.after) !== null && _a !== void 0 ? _a : (_c = (_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.head) === null || _c === void 0 ? void 0 : _c.sha; };
 const getOptions = () => {
     const token = core.getInput('github_token', { required: true });
     const workingDirectory = core.getInput('working_directory', { required: true });
@@ -19326,7 +19325,7 @@ const getOptions = () => {
         workingDirectory,
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
-        issueNumber: pr?.number,
+        issueNumber: pr === null || pr === void 0 ? void 0 : pr.number,
         sha: getSha(),
         targetFiles: targetFiles.join(' '),
         focus,
@@ -19408,7 +19407,8 @@ const fetchPreviousReport = async (octokit, options) => {
         issue_number: issueNumber,
     });
     const previousReport = comments.find((comment) => {
-        return comment.body?.startsWith(uniqueTag(options));
+        var _a;
+        return (_a = comment.body) === null || _a === void 0 ? void 0 : _a.startsWith(uniqueTag(options));
     });
     return previousReport;
 };
