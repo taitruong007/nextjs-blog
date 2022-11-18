@@ -17,7 +17,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
     "@vercel/ncc": "^0.34.0"
   }
 }
