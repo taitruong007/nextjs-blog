@@ -63,6 +63,7 @@ jobs:
           npm i
           npm run build
         working-directory: .github/actions/action-dependency-cruiser
+        shell: bash
       - uses: ./.github/actions/action-dependency-cruiser
         with:
           github-token: ${{ secrets.PRIVATE_PAT }}
