@@ -21,14 +21,14 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v3
-      with:
-        token: ${{ inputs.github-token }}
-    - name: config git url
-      shell: bash
-      env:
-        READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
-      run: |
-        git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
+    #   with:
+    #     token: ${{ inputs.github-token }}
+    # - name: config git url
+    #   shell: bash
+    #   env:
+    #     READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
+    #   run: |
+    #     git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
     - id: changed-files
       uses: tj-actions/changed-files@v34.0.2
       with:
