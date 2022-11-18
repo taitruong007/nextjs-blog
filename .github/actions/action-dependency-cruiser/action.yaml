@@ -1,13 +1,38 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'dependency-cruiser report'
+description: 'visualize dependenices of changed files in each pull request.'
+author: 'MH4GF<h.miyagi.cnw@gmail.com>'
 inputs:
-  who-to-greet: # id of input
-    description: 'Who to greet'
+  github-token:
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    description: 'A github access token'
+    default: ${{ github.token }}
+  config-file:
+    required: false
+    description: 'read rules and options from file (e.g. .dependency-cruiser.js)'
+  cruise-script:
+    required: true
+    description: 'specify depcruise script (e.g. yarn depcruise)'
+    default: yarn run -s depcruise
+  working-directory:
+    required: false
+    description: 'running actions in another directory'
+    default: '.'
 runs:
-  using: 'node16'
+  using: composite
   main: 'dist/index.js'
+  steps:
+    - uses: actions/checkout@v3
+    - id: changed-files
+      uses: tj-actions/changed-files@v34.0.2
+      with:
+        path: ${{ inputs.working-directory }}
+        diff_relative: true
+    - run: $GITHUB_ACTION_PATH/run.sh
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_TARGET_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        INPUT_CONFIG_FILE: ${{ inputs.config-file }}
+        INPUT_CRUISE_SCRIPT: ${{ inputs.cruise-script }}
+        INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}
