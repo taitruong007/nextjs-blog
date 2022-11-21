@@ -41,7 +41,6 @@ runs:
         cd .github/actions/action-dependency-cruiser-report
         yarn --check-files --frozen-lockfile --non-interactive
         yarn build
-        cd ~
       shell: bash
     - run: $GITHUB_ACTION_PATH/run.sh
       working-directory: ${{ inputs.working-directory }}
