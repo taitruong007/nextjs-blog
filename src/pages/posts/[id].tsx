@@ -20,7 +20,7 @@ export default function Post({
   return (
     <Layout>
       <Head>
-        <title>TEST {postData.title}</title>
+        <title>{postData.title}</title>
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
