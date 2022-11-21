@@ -9,6 +9,7 @@ import { runDepcruise } from './runDepcruise';
 
 export const run = async (): Promise<void> => {
   const options = await getOptions();
+  console.log('options', options);
   const octokit = getOctokit(options.token);
 
   await installDependencies();
