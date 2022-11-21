@@ -39,7 +39,7 @@ runs:
         diff_relative: true
     - run: |
         cd .github/actions/action-dependency-cruiser-report
-        yarn install
+        yarn --check-files --frozen-lockfile --non-interactive
         yarn build
       shell: bash
     - run: $GITHUB_ACTION_PATH/run.sh
