@@ -37,7 +37,7 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
-    need: setup
+    needs: setup
     steps:
       - uses: actions/checkout@v3
         with:
