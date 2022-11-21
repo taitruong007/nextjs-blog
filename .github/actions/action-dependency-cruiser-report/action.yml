@@ -1,6 +1,6 @@
 name: 'Dependency Cruiser Report'
 author: 'Tai Truong'
-description: 'Make a graph visualizatyion dependenices of changed files and add it to pull request comment.'
+description: 'Make a graph visualization dependencies of changed files and add it to pull request comment.'
 
 inputs:
   github-token:
