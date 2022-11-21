@@ -24,7 +24,7 @@ runs:
   steps:
     - uses: actions/checkout@v3
       with:
-        token: ${{ github.token }}
+        token: ${{ inputs.github-token }}
     - name: config git url
       shell: bash
       env:
