@@ -38,6 +38,7 @@ runs:
         path: ${{ inputs.working-directory }}
         diff_relative: true
     - run: yarn build
+      shell: bash
     - run: $GITHUB_ACTION_PATH/run.sh
       working-directory: ${{ inputs.working-directory }}
       shell: bash
