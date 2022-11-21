@@ -22,7 +22,7 @@ export default function Layout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
-          name="description"
+          name="description TEST"
           content="Learn how to build a personal website using Next.js"
         />
         <meta
