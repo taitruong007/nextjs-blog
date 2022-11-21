@@ -23,8 +23,8 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v3
-      with:
-        token: ${{ inputs.github-token }}
+      # with:
+      #   token: ${{ inputs.github-token }}
     - name: config git url
       shell: bash
       env:
@@ -46,7 +46,7 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       shell: bash
       env:
-        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_GITHUB_TOKEN: ${{ github.token }}
         INPUT_TARGET_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         INPUT_CONFIG_FILE: ${{ inputs.config-file }}
         INPUT_CRUISE_SCRIPT: ${{ inputs.cruise-script }}
