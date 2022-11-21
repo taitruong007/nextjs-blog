@@ -37,8 +37,9 @@ runs:
       with:
         path: ${{ inputs.working-directory }}
         diff_relative: true
-    - run: cd .github/actions/action-dependency-cruiser-report
-    - run: yarn build
+    - run: |
+        cd .github/actions/action-dependency-cruiser-report
+        yarn build
       shell: bash
     - run: $GITHUB_ACTION_PATH/run.sh
       working-directory: ${{ inputs.working-directory }}
