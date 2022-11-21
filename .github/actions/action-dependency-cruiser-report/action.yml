@@ -1,0 +1,53 @@
+name: 'Dependency Cruiser Report'
+author: 'Tai Truong'
+description: 'Make a graph visualization dependencies of changed files and add it to pull request comment.'
+
+inputs:
+  github-token:
+    required: true
+    description: 'A github access token'
+    default: ${{ github.token }}
+  config-file:
+    required: false
+    description: 'read rules and options from file (e.g. .dependency-cruiser.js)'
+  cruise-script:
+    required: true
+    description: 'specify depcruise script (e.g. yarn depcruise)'
+    default: yarn run -s depcruise
+  working-directory:
+    required: false
+    description: 'running actions in another directory'
+    default: '.'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ inputs.github-token }}
+    - name: config git url
+      shell: bash
+      env:
+        READONLY_GITHUB_TOKEN: ${{ inputs.github-token }}
+      run: |
+        git config --global url."https://${READONLY_GITHUB_TOKEN}:x-oauth-basic@github.com".insteadOf "https://github.com"
+    - id: changed-files
+      # https://github.com/tj-actions/changed-files
+      uses: tj-actions/changed-files@v34.4.4
+      with:
+        path: ${{ inputs.working-directory }}
+        diff_relative: true
+    - run: |
+        cd .github/actions/action-dependency-cruiser-report
+        yarn --check-files --frozen-lockfile --non-interactive
+        yarn build
+      shell: bash
+    - run: $GITHUB_ACTION_PATH/run.sh
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_TARGET_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        INPUT_CONFIG_FILE: ${{ inputs.config-file }}
+        INPUT_CRUISE_SCRIPT: ${{ inputs.cruise-script }}
+        INPUT_WORKING_DIRECTORY: ${{ inputs.working-directory }}

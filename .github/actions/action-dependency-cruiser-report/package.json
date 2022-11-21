@@ -1,0 +1,24 @@
+{
+  "name": "action-dependency-cruiser-report",
+  "version": "1.0.0",
+  "description": "An custom action that using dependency-cruiser to make a graph and add it to pull request comment. This is a cloned project from https://github.com/MH4GF/dependency-cruiser-report-action with some adjust to fix the private repo issue when installing packages.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/main.ts -o dist",
+    "test": "vitest"
+  },
+  "author": "Tai Truong",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@vercel/ncc": "^0.34.0",
+    "typescript": "^4.9.3",
+    "vitest": "^0.25.2"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^5.1.1",
+    "yup": "^0.32.11"
+  }
+}
