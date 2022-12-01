@@ -20,11 +20,6 @@
     {
       "groupName": "emotion",
       "matchPackagePatterns": ["^@emotion"]
-    },
-    {
-      "groupName": "Skip pre-release versions",
-      "matchManagers": ["npm"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
     }
   ]
 }
