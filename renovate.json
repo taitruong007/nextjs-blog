@@ -22,6 +22,7 @@
       "matchPackagePatterns": ["^@emotion"]
     },
     {
+      "groupName": "Test group name",
       "matchManagers": ["npm"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
     }
