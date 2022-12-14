@@ -3,28 +3,23 @@
   "packageRules": [
     {
       "groupName": "eslint packages",
-      "matchPackagePatterns": ["^eslint"]
+      "matchPackagePatterns": ["^eslint"],
+      "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
       "groupName": "mui",
-      "matchPackagePatterns": ["^@mui"]
+      "matchPackagePatterns": ["^@mui"],
+      "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
       "groupName": "graphql-codegen",
-      "matchPackagePatterns": ["^@graphql-codegen"]
+      "matchPackagePatterns": ["^@graphql-codegen"],
+      "matchUpdateTypes": ["major", "minor", "patch"]
     },
     {
       "groupName": "textlint",
-      "matchPackagePatterns": ["^textlint"]
-    },
-    {
-      "groupName": "emotion",
-      "matchPackagePatterns": ["^@emotion"]
-    },
-    {
-      "groupName": "Test group name",
-      "matchManagers": ["npm"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+      "matchPackagePatterns": ["^textlint"],
+      "matchUpdateTypes": ["major", "minor", "patch"]
     }
   ]
 }
