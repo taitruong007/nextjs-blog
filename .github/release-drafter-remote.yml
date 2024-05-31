@@ -4,5 +4,3 @@ tag-template: 'remote_v$RESOLVED_VERSION'
 tag-prefix: remote
 include-paths:
   - 'apps/remote/'
-include-labels:
-  - 'remote'
