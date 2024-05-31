@@ -1,0 +1,25 @@
+prerelease: true
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'minor update'
+      - 'feature'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+      - 'bug fix'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'refactoring'
+      - 'dependencies'
+      - 'unit test'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Contributors
+
+  Thanks to $CONTRIBUTORS for your contributions to this release!
