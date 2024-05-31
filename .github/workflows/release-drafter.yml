@@ -14,4 +14,4 @@ jobs:
         with:
           config-name: release-drafter-remote.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.READONLY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
