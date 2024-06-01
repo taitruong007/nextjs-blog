@@ -6,7 +6,6 @@ categories:
       - 'feature'
   - title: '🐛 Bug Fixes'
     labels:
-      - 'bug'
       - 'bug fix'
   - title: '🧰 Maintenance'
     labels:
