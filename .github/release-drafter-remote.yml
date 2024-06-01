@@ -1,6 +1,6 @@
 _extends: nextjs-blog:.github/release-drafter.yml
-name-template: 'remote_$RESOLVED_VERSION'
-tag-template: 'remote_$RESOLVED_VERSION'
+# name-template: 'remote_$RESOLVED_VERSION'
+# tag-template: 'remote_$RESOLVED_VERSION'
 tag-prefix: remote
 include-paths:
   - 'apps/remote/'

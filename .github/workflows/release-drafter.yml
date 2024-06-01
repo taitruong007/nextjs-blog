@@ -27,7 +27,9 @@ jobs:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-remote.yml
-          version: ${{ needs.create-version.outputs.version }}
+          # version: ${{ needs.create-version.outputs.version }}
+          name: remote_${{ needs.create-version.outputs.version }}_release
+          tag: remote_${{ needs.create-version.outputs.version }}_release
   client-owner:
     name: '[Client Owner] Draft release'
     needs: create-version
@@ -36,7 +38,9 @@ jobs:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-client-owner.yml
-          version: ${{ needs.create-version.outputs.version }}
+          # version: ${{ needs.create-version.outputs.version }}
+          name: client-owner_${{ needs.create-version.outputs.version }}_release
+          tag: client-owner_${{ needs.create-version.outputs.version }}_release
   measurement:
     name: '[Measurement] Draft release'
     needs: create-version
@@ -45,4 +49,6 @@ jobs:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-measurement.yml
-          version: ${{ needs.create-version.outputs.version }}
+          # version: ${{ needs.create-version.outputs.version }}
+          name: measurement_${{ needs.create-version.outputs.version }}_release
+          tag: measurement_${{ needs.create-version.outputs.version }}_release
