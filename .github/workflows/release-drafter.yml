@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Generate Calendar Version
         id: calver
-        run: echo "version=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
         env:
           TZ: "Asia/Tokyo"
   remote:
