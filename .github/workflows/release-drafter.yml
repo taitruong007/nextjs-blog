@@ -9,24 +9,36 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
+  create-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Calendar Version
+        id: calver
+        run: echo "version=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
   remote:
     name: '[Remote] Draft release'
+    needs: create-version
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-remote.yml
+          version: ${{ steps.calver.outputs.version }}
   client-owner:
     name: '[Client Owner] Draft release'
+    needs: create-version
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-client-owner.yml
+          version: ${{ steps.calver.outputs.version }}
   measurement:
     name: '[Measurement] Draft release'
+    needs: create-version
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         with:
           config-name: release-drafter-measurement.yml
+          version: ${{ steps.calver.outputs.version }}

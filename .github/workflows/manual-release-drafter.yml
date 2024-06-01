@@ -19,18 +19,24 @@ jobs:
   create-draft-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate Calendar Version
+        id: calver
+        run: echo "version=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
       - name: '[Remote] Draft release'
         uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         if: ${{ inputs.target == 'remote' }}
         with:
           config-name: release-drafter-remote.yml
+          version: ${{ steps.calver.outputs.version }}
       - name: '[Client Owner] Draft release'
         uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         if: ${{ inputs.target == 'client-owner' }}
         with:
           config-name: release-drafter-client-owner.yml
+          version: ${{ steps.calver.outputs.version }}
       - name: '[Measurement] Draft release'
         uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         if: ${{ inputs.target == 'measurement' }}
         with:
           config-name: release-drafter-measurement.yml
+          version: ${{ steps.calver.outputs.version }}
