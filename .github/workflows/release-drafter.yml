@@ -11,6 +11,8 @@ env:
 jobs:
   create-version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.calver.outputs.version }}
     steps:
       - name: Generate Calendar Version
         id: calver
