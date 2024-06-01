@@ -1,6 +1,4 @@
 _extends: nextjs-blog:.github/release-drafter.yml
-# name-template: 'measurement_$RESOLVED_VERSION'
-# tag-template: 'measurement_$RESOLVED_VERSION'
 tag-prefix: measurement
 include-paths:
   - 'apps/measurement/'

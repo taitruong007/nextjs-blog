@@ -29,7 +29,6 @@ jobs:
         if: ${{ inputs.target == 'remote' }}
         with:
           config-name: release-drafter-remote.yml
-          # version: ${{ steps.calver.outputs.version }}
           name: remote_${{ needs.create-version.outputs.version }}_release
           tag: remote_${{ needs.create-version.outputs.version }}_release
       - name: '[Client Owner] Draft release'
@@ -37,7 +36,6 @@ jobs:
         if: ${{ inputs.target == 'client-owner' }}
         with:
           config-name: release-drafter-client-owner.yml
-          # version: ${{ steps.calver.outputs.version }}
           name: client-owner_${{ needs.create-version.outputs.version }}_release
           tag: client-owner_${{ needs.create-version.outputs.version }}_release
       - name: '[Measurement] Draft release'
@@ -45,6 +43,5 @@ jobs:
         if: ${{ inputs.target == 'measurement' }}
         with:
           config-name: release-drafter-measurement.yml
-          # version: ${{ steps.calver.outputs.version }}
           name: measurement_${{ needs.create-version.outputs.version }}_release
           tag: measurement_${{ needs.create-version.outputs.version }}_release
