@@ -22,6 +22,8 @@ jobs:
       - name: Generate Calendar Version
         id: calver
         run: echo "version=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+        env:
+          TZ: "Asia/Tokyo"
       - name: '[Remote] Draft release'
         uses: release-drafter/release-drafter@3f0f87098bd6b5c5b9a36d49c41d998ea58f9348 # v6.0.0
         if: ${{ inputs.target == 'remote' }}
