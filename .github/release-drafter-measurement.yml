@@ -1,0 +1,8 @@
+_extends: nextjs-blog:.github/release-drafter.yml
+name-template: 'measurement_v$RESOLVED_VERSION'
+tag-template: 'measurement_v$RESOLVED_VERSION'
+tag-prefix: measurement
+include-labels:
+  - 'measurement'
+include-paths:
+  - 'apps/measurement/'

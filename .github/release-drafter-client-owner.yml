@@ -1,0 +1,8 @@
+_extends: nextjs-blog:.github/release-drafter.yml
+name-template: 'client-owner_v$RESOLVED_VERSION'
+tag-template: 'client-owner_v$RESOLVED_VERSION'
+tag-prefix: client-owner
+include-labels:
+  - 'client-owner'
+include-paths:
+  - 'apps/client-owner/'
