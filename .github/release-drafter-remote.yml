@@ -1,4 +1,4 @@
 _extends: nextjs-blog:.github/release-drafter.yml
-tag-prefix: remote
+# tag-prefix: remote
 include-paths:
   - 'apps/remote/'
