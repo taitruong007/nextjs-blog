@@ -14,6 +14,22 @@ jobs:
       apps: ${{ steps.affected.outputs.apps }}
       libs: ${{ steps.affected.outputs.libs }}
     steps:
+      # checkout
+      - uses: actions/checkout@v4
+        name: Checkout
+        with:
+          fetch-depth: 0
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+        with:
+          main-branch-name: 'main'
+
+      - name: Setup
+        uses: ./.github/actions/setup-nx
+        with:
+          ro-token: ${{ secrets.READONLY_GITHUB_TOKEN }}
+          
       - name: Affected
         id: affected
         env:
