@@ -1,0 +1,44 @@
+name: 'setup-nx'
+description: 'setup-nx'
+inputs:
+  ro-token:
+    description: 'the github token to use GitHub API'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Add tools path
+      shell: bash
+      run: |
+        mkdir -p "~/.local/bin"
+        echo "~/.local/bin" >> $GITHUB_PATH
+
+    - name: Git config
+      shell: bash
+      run: |
+        git config --global url."https://${{ inputs.ro-token }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+
+    # Setup yarn
+    - uses: volta-cli/action@v4
+    - name: Print node/yarn versions
+      id: versions
+      shell: bash
+      run: |
+        node_ver=$( node --version )
+        yarn_ver=$( yarn --version || true )
+        echo "Node: ${node_ver:1}"
+        if [[ $yarn_ver != '' ]]; then echo "Yarn: $yarn_ver"; fi
+        echo "node_version=${node_ver:1}" >> $GITHUB_OUTPUT
+    - name: Use the node_modules cache if available
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ steps.versions.outputs.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-${{ steps.versions.outputs.node_version }}-yarn-
+    - name: Install dependencies
+      shell: bash
+      run: |
+        yarn install --immutable
