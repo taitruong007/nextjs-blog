@@ -1,0 +1,25 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+env:
+  READONLY_GITHUB_TOKEN: ${{ secrets.READONLY_GITHUB_TOKEN }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.affected.outputs.apps }}
+      libs: ${{ steps.affected.outputs.libs }}
+    steps:
+      - name: Affected
+        id: affected
+        env:
+          READONLY_GITHUB_TOKEN: ${{ secrets.READONLY_GITHUB_TOKEN }}
+        run: |
+          apps="`yarn --silent nx show projects --json --affected --type app`"
+          echo "apps=${apps}" >> $GITHUB_OUTPUT
+          libs="`yarn --silent nx show projects --json --affected --type lib`"
+          echo "libs=${libs}" >> $GITHUB_OUTPUT
