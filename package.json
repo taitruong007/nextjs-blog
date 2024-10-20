@@ -71,7 +71,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.1.1",
-    "nx": "19.5.7",
+    "nx": "19.8.6",
     "rules": "^0.6.53",
     "storybook-addon-swc": "^1.1.9",
     "textlint": "^12.2.1",
